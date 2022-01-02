@@ -1,0 +1,123 @@
+* Assignment 1
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [article,letterpaper,times,10pt,margin=0.5in]
+#+LATEX_HEADER: \usepackage[margin=0.3in]{geometry}
+#+LATEX_HEADER: \usepackage{gauss}
+- exercise 2.2:14 (p.79)
+  - No, the given matrix $A=(a_{ij})$ is *not* in r.e.f.; e.g $a_{11}$
+    is the leading entry in row 1, so $a_{21}$ could not have been the
+    leading entry in row 2.
+- exercise 2.3:18 (p.98)
+  - $u=1.u+0.v+0.w$, hence $u\in{\rm Span}(u,v,w)$. Similarly
+    $v,w\in{\rm Span}(u,v,w)$.
+- exercise 3.1:14 (p. 152)
+  - $A:=\left(\begin{matrix}3&0\\-1&5\end{matrix}\right),
+     D:=\left(\begin{matrix}0&-3\\-2&1\end{matrix}\right)$. \\
+     $DA-AD=\left(\begin{matrix}3&-15\\-7&5\end{matrix}\right)
+           {} - \left(\begin{matrix}0&-9\\-10&8\end{matrix}\right)
+           {} = 3\left(\begin{matrix}1&-2\\1&-1\end{matrix}\right)$.
+- exercise 3.2:36b (p. 162)
+  - Note that if $A=A^T, B=B^T$, then $(AB)^T=B^TA^T=BA$ always, so
+    that $(AB)^T=AB$ is equivalent to $BA=AB$.
+- exercise 3.2:44 (p. 162)
+  - ${\rm tr}(A+B) := \sum_{i=1}^n (a_{ii}+b_{ii}) = \sum_i a_{ii} +
+    \sum_i b_{ii} = : {\rm tr}(A) + {\rm tr}(B)$
+  - ${\rm tr}(kA):=\sum_i ka_{ii} = k\sum_i a_{ii} =: k{\rm tr}(A)$
+- exercise 3.3:54 (p, 179)
+  - We apply the following sequence of elementary row operations \\
+    $\begin{gmatrix}[p] 1&1&0 &|& 1&0&0 \\ 1&0&1 &|& 0&1&0 \\ 0&1&1 &|& 0&0&1
+     \rowops
+      \mult{1}{\cdot -1}
+      \add{0}{1}
+      \mult{2}{\cdot -1}
+      \add{1}{2}
+      \mult{2}{\cdot -\frac{1}{2}}
+      \add{2}{1}
+      \add[-1]{1}{0}
+     \end{gmatrix}$     to arrive at
+    $\frac{1}{2}\begin{gmatrix}[p]  2&0&0 &|& 1&1&-1 \\ 0&2&0 &|& 1&-1&1 \\ 0&0&2 &|& -1&1&1 \end{gmatrix}$ \\
+    The right half of the augmented matrix (including the scalar factor of $\frac{1}{2})$ is the inverse.
+- exercise 3.5:18 (p. 210)
+  - row(A): transform to echelon form:
+    $\begin{gmatrix}[p] 1&1&-3 \\ 0&2&1 \\ 1&-1&-4
+     \rowops
+       \mult{2}{\cdot -1}
+       \add{0}{2}
+       \mult{2}{\cdot -1}
+       \add{1}{2}
+     \end{gmatrix} \longrightarrow
+     \begin{gmatrix}[p] 1&1&-3 \\ 0&2&1 \\ 0&0&0 \end{gmatrix}$ \\
+    and read off the basis for row(A): $\{(1,1,-3)^T,(0,2,1)^T\}$
+  - col(A): We know that dim row(A) = dim col(A) = 2, and the first two
+    columns of A (in row echelon form) are l.i. Hence they are enough
+    for a basis: $\{(1,0,0)^T,(1,2,0)^T\}$
+  - null(A): Back-substitute into r.e.f of A to find solutions of $Av=0$:
+    $2y+z=0, x+y-3z=0 \implies y=-\frac{z}{2}, x=\frac{7}{2}z$,
+    so ${\rm null}\ A = {\rm Span} (\frac{7}{2},-\frac{1}{2},1)^T$
+- exercise 3.6:4 (p. 224)
+  - $T(0)=0$ clearly, and \\
+    $T(\alpha (x_1,y_1)^T + \beta (x_2,y_2)^T) =
+      T\left(\begin{matrix}
+        \alpha x_1 + \beta x_2 \\ \alpha y_1 + \beta y_2 \end{matrix}\right)
+      = \left(\begin{matrix} -\alpha y_1 -\beta y_2 \\ \alpha x_1 + \beta x_2 + 2(\alpha y_1 + \beta y_2) \\ 3(\alpha x_1+\beta x_2) - 4(\alpha y_1 + \beta y_2)\end{matrix}\right)
+      = \left(\begin{matrix} {} -\alpha y_1 \\ \alpha x_1 + 2\alpha y_1 \\ 3\alpha x_1 - 4\alpha y_1 \end{matrix}\right)
+      {} + \left(\begin{matrix} {} -\beta y_2 \\ \beta x_2 + 2 \beta y_2 \\ 3\beta x_2 - 4\beta y_2 \end{matrix}\right) \\
+      = \alpha T\left(\begin{matrix}x_1\\y_1\end{matrix}\right) {} + \beta T\left(\begin{matrix}x_2\\y_2\end{matrix}\right)$
+- exercise 4.1:8 (p. 261)
+  - Solve for $(A+I)v = 3\begin{gmatrix}[p] 1&1\\1&1 \end{gmatrix} v = 0$:
+    clearly $A(1,-1)^T=-(1,-1)^T$, which also shows that -1 is indeed
+    an egienvalue of $A$
+- exercise 4.2:14 (p. 281)
+  - in the first iteration of applying the Laplace's Theorem, expand along the second column: \\
+    $\begin{vmatrix} 2^+&0^-&3&-1 \\ 1&0^+&2&2 \\ 0&-1^-&-1&4 \\ 2&0&1&-3 \end{vmatrix}
+     = 1.\begin{vmatrix} 2^+&3&-1 \\ 1^-&2&2 \\ 2^+&1&-3 \end{vmatrix}
+     = 2 \begin{vmatrix} 2&2\\1&-3\end{vmatrix} -\begin{vmatrix}3&-1\\1&-3\end{vmatrix} +2\begin{vmatrix}3&-1\\2&2\end{vmatrix}
+     = 8$.
+- exercise 4.3:4 (p. 298)
+  - $|A-\lambda I| = \begin{vmatrix}1-\lambda&0&1 \\ 0&1-\lambda&1 \\ 1 & 1 & -\lambda \end{vmatrix}
+     = (1-\lambda)\begin{vmatrix} 1-\lambda & 1 \\ 1 & \lambda \end{vmatrix} + \begin{vmatrix} 0&1\\1-\lambda&1\end{vmatrix}
+     = (1-\lambda)(\lambda^2-\lambda-2)=(1-\lambda)(1+\lambda)(\lambda-2)$
+  - the eigenvalues are clearly $\lambda=\pm1,\lambda=2$, each with algebraic and geometric multiplicity one.
+  - eigenspaces:
+    - $\lambda=-1$:
+      - r.e.f of $A+I$:
+        $\begin{gmatrix}[p]2&0&1\\0&2&1\\1&1&1
+          \rowops
+            \mult{2}{\cdot 2}
+            \add[-1]{0}{2}
+            \add{1}{2}
+        \end{gmatrix} \longrightarrow
+        \begin{pmatrix} 2&0&1\\0&2&1\\0&0&0 \end{pmatrix}$ \\
+        so that $(A+I)(x,y,z)^T=0$ leads to constraints $x=y=-\frac{z}{2}$,
+        and ${\rm null}(A+I)={\rm Span}(1,1,-2)^T$
+    - $\lambda=+1$:
+      - r.e.f. of $A-I$ is clearly $\begin{pmatrix}1&1&0\\0&0&1\\0&0&0\end{pmatrix}$,
+        so that null($A-\lambda I)={\rm Span} \{ (1,-1,0)^T \}$
+    - $\lambda=2$:
+      - r.e.f of $A-2I$:
+        $\begin{gmatrix}[p]-1&0&1\\0&-1&1\\1&1&-2
+          \rowops
+            \add{0}{2}
+            \add{1}{2}
+        \end{gmatrix} \longrightarrow
+        \begin{pmatrix} -1&0&1\\0&-1&1\\0&0&0 \end{pmatrix}$ \\
+        so that $(A-2I)(x,y,z)^T=0$ leads to constraints $x=y=z$,
+        and ${\rm null}(A-2I)={\rm Span}(1,1,1)^T$
+- exercise 4.4:4 (p. 309)
+  - characteristic polynomials:
+    - $\chi_A = \begin{vmatrix}1-\lambda&2&0\\0&1-\lambda&-1\\0&-1&1-\lambda\end{vmatrix}
+       = (1-\lambda)((1-\lambda)^2-1)=\lambda(1-\lambda)(\lambda-2)$
+    - $\chi_B = \begin{vmatrix}2-\lambda&1&1\\0&1-\lambda&0\\2&0&1-\lambda\end{vmatrix}
+       = (2-\lambda)(1-\lambda)^2-2(1-\lambda) = \lambda(1-\lambda)(\lambda-3)$
+  - the eigenvalues of $A$ and $B$ are different, thus the two matrices cannot be similar
+- exercise 4.4:20 (p.309)
+  - characteristic polynomial: $\chi_A=\begin{vmatrix}2-\lambda&1&2\\2&1-\lambda&2\\2&1&2-\lambda\end{vmatrix}
+     = \lambda^2(5-\lambda)$. Thus the eigenvalues are $\lambda=0,5$
+  - eigenspaces
+    - $\lambda=0$: The eigenspace is the plane given by $2x+y+2z=0$, and spanned e.g. by $\{(-1,0,1)^T,(0,2,-1)^T\}$
+    - $\lambda=5$: By inspection, we see one eigenvector $(1,1,1)$, which is enough since rank A = 1
+  - diagonalization: $A=P^{-1}\begin{pmatrix} 0& & \\ &5& \\ & & 0 \end{pmatrix}P$,
+     where $P=\begin{pmatrix}-1&1&0\\0&1&2\\1&1&-1\end{pmatrix}$
+  - Thus $A^8=P^{-1}\begin{pmatrix} 0& & \\ &5^8& \\ & & 0 \end{pmatrix}P
+     = P^{-1}5^7\begin{pmatrix} 0& & \\ &5& \\ & & 0 \end{pmatrix}P
+      = 5^7\begin{pmatrix} 2&1&2 \\ 2&1&2 \\ 2&1&2 \end{pmatrix}$
