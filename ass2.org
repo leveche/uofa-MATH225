@@ -1,0 +1,80 @@
+* Assignment 2
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [article,letterpaper,times,10pt,margin=0.5in]
+#+LATEX_HEADER: \usepackage[margin=0.3in]{geometry}
+#+LATEX_HEADER: \usepackage{gauss}
+1. [X] Exercise 4.4, page 310, Q#44
+   - If $A$ is invertible, it has no zero eigenvalues. If $A$ is
+     similar to a diagonal matrix $A=P^{-1}{\rm diag}(\lambda_1,\ldots,\lambda_n)P$,
+     with $\lambda_i\neq0$, it is easy to verify that $P^{-1}{\rm diag}(\lambda_1^{-1}\ldots\lambda_n^{-1})P$
+     is the inverse of $A$: $P^{-1}DPP^{-1}D^{-1}P=I$
+2. [X] Exercise 5.1, page 377, Q#10
+   - Check for orthogonality: $v_i\cdot v_j$ for $i\neq j$ is given by the off-diagonal entries of the symmetric matrix\\
+     $\begin{pmatrix} 1&1&1 \\ 1&-1&0 \\ 1&1&-2\end{pmatrix}\begin{pmatrix}1&1&1\\1&-1&1\\1&0&-2\end{pmatrix}
+      = \begin{pmatrix}3&0&0\\&2&0\\&&6\end{pmatrix}$. Note that diagonal entries are $|v_i|^2$
+   - The dot products of $w$ with $v_i$ are given by the entries
+     $\begin{pmatrix}1&1&1 \\ 1&-1&0 \\ 1&1&-2\end{pmatrix}\begin{pmatrix}1\\2\\3\end{pmatrix}
+      = \begin{pmatrix}6\\-1\\-3\end{pmatrix}$. \\
+      Hence $w=\sum_{i=1}^3 \frac{v_i\cdot w_i}{|v_i|^2}v_i
+        = 2v_1 - \frac{1}{2}v_2 - \frac{1}{2}v_3$
+3. [X] Exercise 5.1, page 377, Q#16
+   - The dot products of columns of $A:=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$ are given by
+     $A^TA = \begin{pmatrix}1&0\\0&1\end{pmatrix}=I_2$, so $A$ is clearly orthogonal, and $A^T=A^{-1}$
+4. [X] Exercise 5.1, page 377, Q#36
+   - Contrapositive form of the same statement: by the rank-nullity
+     theorem, dim ker $A$ \geq $n-m$ > 0, so for any $A: \mathbb{K}^n\to\mathbb{K}^m$
+     we can find a non-zero vector $0\neq x\in
+     {\rm ker} A$ (hence $|x|\neq0$), so that $|Ax|=|0|=0\neq|x|$.
+5. [X] Exercise 5.2, page 387, Q#14
+   - Reduce to r.e.f. the matrix
+     $A^T := \begin{gmatrix}[p]4&6&-1&1&-1\\1&2&0&1&-3\\2&2&2&-1&2
+       \rowops
+         \mult{1}{\cdot -4}
+         \add{0}{1}
+         \mult{2}{\cdot -2}
+         \add{0}{2}
+         \add{1}{2}
+         \mult{2}{/6}
+      \end{gmatrix} \longrightarrow \begin{pmatrix}4&6&-1&1&-1\\&-2&-1&-3&11\\&&-1&0&1\end{pmatrix}=:B$
+     and back-substitute for the solution of $B(x_1,x_2,x_3,x_4,x_5)^T = 0$: $x_3=x_5, 2x_2=10x_5+-3x_4, x_1=-7x_5+4x_4$.\\
+     i.e. $({\rm col}A)^\perp = {\rm ker} A^T = {\rm Span}\{(4,-3,0,2,0)^T,(-7,5,1,0,1)^T\}$
+6. [X] Exercise 5.2, page 387, Q#16
+   - ${\rm proj}_{<u_1,u_2>} v = \frac{v\cdot u_1}{|u_1|^2}u_1 + \frac{v\cdot u_2}{|u_2|^2}u_2
+      = \frac{2}{3}u_1 + u_2 = \frac{1}{3} (5,-1,3)^T$
+7. [X] Exercise 5.2, page 387, Q#20
+   - $u := {\rm proj}_{<u>} v = \frac{u\cdot v}{|u|^2}u = \frac{4}{3}(1,1,1)^T$, so
+     $v = u + (v-u) = \frac{4}{3} (1,1,1)^T + \frac{1}{3}(5,2,-7)^T$
+8. [X] Exercise 5.3, page 395, Q#10
+   - Take $x_1 = (1,1,-1,1)^T$, with $|x_1|^2=4$. Then $x_2 := v_2 -
+     {\rm proj}_{x_1}v_2 = v_2-\frac{x_1\cdot v_2}{|x_1|^2}x_1 = v_2 -
+     x_1 = (0,-2,2,4)^T$. Note that $x_2\perp v_3$, so that $x_3 =
+     v_3 - {\rm proj}_{x_1,x_2}v_3 = v_3 - \frac{x_1\cdot
+     v_3}{|x_1|^2}x_1 - \frac{x_2\cdot v_3}{|x_2|^2}x_2 = v_3 - x_1 =
+     (0,1,1,0)^T$.\\
+     To summarise, $\{ (1,1,-1,1)^T, (0,-1,1,2)^T, (0,1,1,0)^T \}$ is an orthogonal basis of the column space.
+9. [X] Exercise 5.3, page 395, Q#18
+   - $R$ is clearly a $2\times2$ matrix $\begin{pmatrix}r_{11}&r_{12}\\&r_{22}\end{pmatrix}$,
+     with coefficients obtained by matching the column vectors of $A$ and $QR$:
+     $(1,2,-1,0)^T=r_{11}\times\frac{1}{\sqrt6}(1,2,-1,0)^T$, and
+     $(3,4,-1,1)^T=\frac{r_{12}}{\sqrt6}(1,2,-1,0)^T + \frac{r_{22}}{\sqrt3}(1,0,1,1)^T$.
+     The former equation is trivial, the latter yields $r_{12}+r_{22}\sqrt2=3\sqrt6$,
+     $-r_{12}+r_{22}\sqrt2=-\sqrt6$. Thus $R=\sqrt6\begin{pmatrix}1&2\\&\frac{1}{\sqrt2}\end{pmatrix}$
+10. [X] Exercise 5.3, page 395, Q#20
+    - 'only if': Suppose $A: \mathbb{K}^n\to\mathbb{K}^n$ is
+      invertible. Then the columns $(a_i)$ of $A$ form a basis of
+      $\mathbb{K}^n$. By applying the Gram-Schmidt process, we obtain
+      another basis $q_i$ of $\mathbb{K}^n$. Moreover, at each step $j$
+      of the process, the set of vectors $\{q_1,\ldots,q_j\}$ is
+      constructed out of linear combinations of the set
+      $\{a_1,\ldots,a_j\}$, so $A=QR$ with $R$
+      upper-triangular. Moreover, the diagonal entries of $R$ are all
+      non-zero, otherwise ${\rm Span}\{a_1,\ldots,a_j\}={\rm Span}\{a_1,\ldots,a_{j+1}\}$, which would mean
+      columns of $A$ are not linearly independent, so $A$ is not invertible.
+    - 'if': Suppose now $A=QR$, with $Q$ orthogonal and $R$
+      upper-triangular with non-zero entries on the diagonal. It is
+      tacitly assumed here that both $Q$ and $R$ are $n\times n$,
+      otherwise the previous exercise gives a counter-example. $R$ is
+      invertible since all rows are l.i. (bottom row is l.i., hence
+      the bottow two, and so on by induction). $Q$ is also invertible
+      since the columns are an (orthonormal) basis of
+      $\mathbb{K}^n$. Thus $R^{-1}Q^{-1}$ is the inverse of $A$.
