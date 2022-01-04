@@ -1,0 +1,142 @@
+* Assignment 3
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [article,letterpaper,times,10pt,margin=0.5in]
+#+LATEX_HEADER: \usepackage[margin=0.3in]{geometry}
+#+LATEX_HEADER: \usepackage{gauss}
+1. Exercise 5.4 page 407, Q#8
+   - Characteristic polynomial \\
+     $|A-\lambda I| =
+     (1-\lambda)((1-\lambda)^2-4) - 4 (2(1-\lambda)-4) =
+     (1-\lambda)^3 - 12(1-\lambda) + 16 =
+     ((1-\lambda)-2))^2((1-\lambda)+4)$,\\
+     so the eigenvalues are
+     $\lambda_{1,2}=-1$ and $\lambda_3=5$.
+   - Eigenvectors:
+     - $\lambda_{1,2}=-1$: $\begin{pmatrix} 2&2&2\\2&2&2\\2&2&2\end{pmatrix}
+       \longrightarrow \begin{pmatrix} 1&1&1 \\&&0\\&&0\end{pmatrix}$,\\
+       so that $q_1 = (1,1,-2)^T$, $q_2 = (1,-2,1)^T$
+       We'll need orthonormal basis soon, so after applying Gram-Schmidt and normalizing,
+       have $q_1 = \frac{1}{\sqrt6} (1,1,-2)^T$, $q_2 = \frac{1}{\sqrt2}(1,-1,0)^T$
+     - $\lambda_3 = 5$: $\begin{gmatrix}[p] -4&2&2\\2&-4&2\\2&2&-4
+       \rowops
+         \mult{1}{\cdot -1}
+         \add{2}{1}
+         \mult{2}{\cdot 2}
+         \add{0}{2}
+         \add{1}{2}
+         \mult{1}{/6}
+         \mult{0}{/2}
+       \end{gmatrix} \longrightarrow
+       \begin{pmatrix} -2&1&1\\&1&-1\\&&0\end{pmatrix}$,
+       so $q_3=\frac{1}{\sqrt3}(1,1,1)^T$
+     - Thus $A=Q^T\begin{pmatrix}-1&&\\&-1&\\&&5\end{pmatrix}Q$,
+       with $Q=\frac{1}{\sqrt6}\begin{pmatrix}1&\sqrt3&\sqrt2\\1&-\sqrt3&\sqrt2\\-2&0&\sqrt2\end{pmatrix}$
+2. Exercise 5.4 page 407, Q#16
+   - If $A=B^2$ with $B$ symmetric, then by the Spectral Theorem
+     $B=\sum_i \mu_i q_i q_i^T$, where $\mu_i$ are the real
+     eigenvalues of $B$, corresponding to the orthogonal eigenbasis
+     $\{q_i\}$. It is easy to see that for each eigenvector,
+     $Aq_i=\mu^2 q_i$, with $\mu^2\geq0$, so that $\{q_i\}$ is still
+     an orthogonal eigenbasis of $A$.  Thus $A$ is symmetric with
+     non-negative eigenvalues.
+   - Conversely, if $A$ is symmetric with non-negative eigenvalues
+     $\mu_i^2$ for real $\mu_i$, its spectral decomposition is $A=\sum
+     \mu_i^2 q_i q_i^T$. We construct the matrix $B := \sum \mu_i
+     q_iq_i^T$ and observe that
+     - $B$ is symmetric since it is orthogonally diagonalizable, and
+     - $A=B^2$ since for any $v=\sum_i \alpha_i q_i$, $Av=\sum_i
+       A(\alpha_i q_i) = \sum_i \alpha_i \mu^2 q_i = \sum_i \alpha_i
+       B^2 q_i = \sum_i B^2(\alpha_i q_i) = B^2v$
+3. Exercise 5.5 page 423, Q#18
+   - $2xy+2xz+2yz = (x,y,z)\begin{pmatrix}&1&1\\1&&1\\1&1&\end{pmatrix}(x,y,z)^T$
+   - characteristic polynomial $-\lambda(\lambda^2-1)-2(\lambda-1)
+     = -(\lamba+1)^2(\lambda-2)$. Eigenvalues are thus $\lambda=-1$ twice, and $\lambda=2$
+   - Eigenvectors
+     - $\lambda=-1$: $\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}
+       \longrightarrow \begin{pmatrix}1&1&1\\&&0\\&&0\end{pmatrix}$
+     - $\lambda=2$: $\begin{gmatrix}[p]-2&1&1\\1&-2&1\\1&1&-2
+       \rowops
+       \mult{2}{\cdot -1}
+       \add{2}{1}
+       \mult{2}{\cdot 2}
+       \add{0}{2}
+       \add{1}{2}
+       \mult{1}{/3}
+       \end{gmatrix} \longrightarrow \begin{pmatrix}-2&1&1\\&1&-1\\&&0\end{pmatrix}$
+   - recalling our calculations from qn. 1, the orthonormal eigenbasis is
+     given by the columns of $Q=\frac{1}{\sqrt6}\begin{pmatrix}1&\sqrt3&\sqrt2\\1&-\sqrt3&\sqrt2\\-2&0&\sqrt2\end{pmatrix}$,
+     and the quadratic form in that eigenbasis is $\begin{pmatrix}-1&&\\&-1&\\&&2\end{pmatrix}$
+4. Exercise 5.5 page 424, Q#26
+   - $-(x^2+y^2+z^2+2xy+2xz+2yz)
+     = -(x,y,z)\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}(x,y,z)^T$
+     Clearly $0$ is an eigenvalue of
+      $A := \begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}$,
+     also $A = (\frac{1}{\sqrt3}A)^2$, so that by qn. 2 its eigenvalues are non-negative.
+     This quadratic form is thus negative-semidefinite.
+5. Exercise 6.1 page 441, Q#6
+   - The following axioms do not hold: ## 7,8:
+     - #7: $1\cdot\left((0,0)^T+(0,0)^T\right)
+            = 1\cdot(1,1)^T = (1,1)^T
+            \neq (2,2)^T
+            = 1\cdot(0,0)^T + 1\cdot(0,0)^T$
+     - #8: $(1+1)(0,0)^T = (0,0)^T
+           \neq (2,2)^T = 1\cdot(0,0)^T + 1\cdot(0,0)^T$
+6. Exercise 6.1 page 442, Q#28
+   - $\begin{pmatrix}a&b\\b&2a\end{pmatrix} + \begin{pmatrix}u&v\\v&2u\end{pmatrix}
+      = \begin{pmatrix}a+u&v+b\\v+b&2(a+u)\end{pmatrix}\in W$, and also
+   - $\alpha\begin{pmatrix}a&b\\b&2a\end{pmatrix}
+      = \begin{pmatrix}\alpha a&\alpha b\\ \alpha b &2\alpha a\end{pmatrix}\in W$
+   - Thus $W\leq M_{22}$
+7. Exercise 6.2 page 457, Q#12
+   - $\{e^x,e^{-x}\}$ is l.i., otherwise $a e^x - b e^{-x} = 0_{\mathbb{R}\to\mathbb{R}}$,
+     with $a,b$ not both zero.  But then $a e^0 - b e^0 = a-b = 0$, so $a=b\neq0$, and
+     $e^{2x} = 1$, the function $\mathbb{R}\to\{1}$. It is enough to observe now that the exponential
+     function is not constant, e.g. $e^0\neq e^1$. If we take the definition of $exp(x)$ to be solution
+     of the differential equation $exp'(x)=exp(x)$, together with the initial condition (already used above) $exp(0)=1$,
+     then $(e^x)'|_0=1\neq0$, so by the mean value theorem $e^x$ is not constant.
+8. Exercise 6.2 page 457, Q#22
+   - If $p := a_0 + a_1 x^1 + a_2x^2$ is any polynomial in $P_2[x]$, then
+     $p = -a_2 (x-x^2) + (a_1+a_2) (1+x) + (a_0-a_2)$, so the set certainly spans $P_2[x]$.
+     On the other hand, we know that ${\rm dim} P_2[x] = 3$ (because $\{1,x,x^2\}$ is
+     the standard basis), so since $|\mathfraq{B}| = 3$, it is a basis by the Basis theorem.
+9. Exercise 6.2 page 457, Q#34
+   - $\mathfraq{B} := \{x,x^2\}$ is a basis, which makes dim $V$ = 2.
+     - span:
+       - let $P_2[x]\ni p = a_0 + a_1 x^1 + a_2 x^2$ satisfy $p(0)=0$ Since $p(0) = a_0$,
+         we must have $a_0 = 0$, so $p = a_1 x + a_2 x^2$.
+     - l.i:
+       - $\mathfraq{B}$ is a subset of a l.i. set, viz the standard basis of $P_2[x]$. Thus
+         if $\mathfrac{B}$ is not l.i., so would be $\{1,x,x^2\}$.
+10. Exercise 6.3 page 471, Q#8
+    - coordinate vectors
+      - wrt $\mathfraq{B}$
+        - Let $4-2x-x^2 = a x + b (1+x^2) + c (x^2+x)$, so equating the
+          coefficients of the powers of $x$ yields the system
+           $\begin{pmatrix}  0 & 1 & 0  \\ 1 & 0 & 1  \\ 0 & 1 & 1\end{pmatrix}
+             \begin{pmatrix} a\\b\\c \end{pmatrix} = \begin{pmatrix} 4\\-2\\-1 \end{pmatrix}$. \\
+           Gauss elimination: $\begin{gmatrix}[p]0&1&0 &|& 4 \\ 1&0&1 &|& -2 \\ 0&1&1 &|& -1
+               \rowops
+                 \swap{0}{1}
+                 \mult{1}{\cdot -1}
+                 \add{1}{2}
+             \end{gmatrix} \longrightarrow
+             \begin{pmatrix} 1&0&1 &|& -2 \\ &1&0 &|& 4 \\ && 1 &|& -5 \end{pmatrix}$ \\
+        So that $[4-2x-x^2]_{\mathfraq{B}} = (3,4,-5)^T$
+      - wrt $\mathfraq{C}$
+        - $4-2x-x^2 = a\cdot1 + b(1+x) + c x^2 = c x^2 +bx + a+b$ gives immediately
+          $[4-2x-x^2]_{\mathfrac{C}} = (6,-2,-4)^T$
+    - change-of-basis matrix from B to C
+      - Express basis elements of $\mathfraq{B}$ in terms of $\mathfrac{C}$:
+        - $[x]_{\mathfraq{C}} = (-1,1,0)^T$,
+          $[1+x^2]_{\mathfraq{C}} = (1,0,1)^T$,
+          $[x+x^2]_{\mathfraq{C}} = (-1,1,1)^T$.
+        - Hence change-of-basis matrix is $P_{C\gets B}
+              = \begin{pmatrix}-1&1&-1\\1&0&1\\-1&1&1\end{pmatrix}$
+    - So $[4-2x-x^2]_{\mathfraq C} = P_{C\gets B} [4-2x-x^2]_{\mathfrac B}}$
+    - change-of-basis matrix from C to B
+      - Express basis elements of $\mathfraq{C}$ in terms of $\mathfrac{B}$:
+        - $[x^2]_{\mathfraq{B}} = (1,0,-1)^T$,
+          $[1+x]_{\mathfraq{B}} = (0,1,-1)^T$,
+          $[1]_{\mathfraq{B}} = (1,1,-1)^T$.
+        - Hence change-of-basis matrix is $P_{C\gets B} = \begin{pmatrix}1&0&1\\1&1&0\\-1&-1&-1\end{pmatrix}$
+    - use (c) and (d) to find [x]_B, compare to part (a)
