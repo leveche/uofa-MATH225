@@ -1,0 +1,114 @@
+* Assignment 4
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [article,letterpaper,times,10pt,margin=0.5in]
+#+LATEX_HEADER: \usepackage[margin=0.3in]{geometry}
+#+LATEX_HEADER: \usepackage{gauss}
+1. Exercise 6.4, page 480, Q#2
+   - T is *not* linear; e.g.
+     $T\left(2\begin{pmatrix}1&1\\1&1\end{pmatrix}\right)
+      = T\begin{pmatrix}2&2\\2&2\end{pmatrix}
+      = \begin{pmatrix}1&0\\0&1\end{pmatrix}
+      \neq \begin{pmatrix}2&0\\0&2\end{pmatrix}
+      = 2T\begin{pmatrix}1&1\\1&1\end{pmatrix}$
+2. Exercise 6.4, page 480, Q#10
+   - $T$ is *not* linear; consider e.g. its action of the identity
+     function $f(x) = x$.\\
+     Clearly $T(f) = g(x) = x^2$, but
+     $2f$ is the function $x\to2x$, which is mapped to
+     $T(2f) = 4x^2 \neq 2T(f) = 2x^2$
+3. Exercise 6.4, page 480, Q#14
+   - $T(a,b)^T = T(a(1,0)^T+b(1,0)^T) = aT(1,0)^T + bT(0,1)^T
+      = a(1,2,-1)^T + b(3,0,4)^T = (a+3b,2a,4b-a)^T$
+   - Substitute $a=5, b=2$: $T(5,2)^T = (11,10,3)^T$
+4. Exercise 6.4, page 480, Q#16
+   + $T(a+bx+cx^2) = aT(1) + bT(x) +cT(x^2)
+     = a(3-2x) + b(4x-x^2) + c(2+2x^2)
+     = (3a+2c) + (4b-2a)x + (2c-b)x^2$
+   + Substitute $a=6, b=1, c=-4$: $T(6+x-4x^2)=10-8x-9x^2$
+5. Exercise 6.4, page 480, Q#22
+   - For any $x\in V$, $x = \sum_{i=1}^n \alpha_i v_i$ for some
+     scalars $\alpha_i \in \mathbb{F}$, since $\{v_i\}_i$ spans $V$. \\
+     Now $T(x) = T(\sum_{i=1}^n \alpha_i v_i)
+               = \sum_i \alpha_i T(v_i)
+               = \sum_{i=1}^n \alpha_i v_i
+               = x$ since $T$ is linear. \\
+     So $T(x)=x$ for all $x\in V$, i.e. $T$ is the identity on $V$.
+6. Exercise 6.4, page 480, Q#32
+   - only if: Clearly if $T(v) = + v$ then $Tv + v = 0$ is a
+     non-trivial linear combination satisfying the definition of
+     linear dependence. Similarly for $Tv = -v$.
+   - if $\{v,Tv\}$ is linearly dependent then $\alpha v + \beta Tv = 0$
+     for $\alpha, \beta$ not both zero. \\
+     But since $T^2=I$, we have
+     $\alpha Tv + \beta T^2v = \alpha Tv + \beta v = 0$.
+     Adding the two equalities, $(\alpha+\beta)(Tv+v)=0$. Then either
+     $v+Tv=0_{V}$, or $\alpha+\beta=0_{\mathbb{F}}$.
+     The former leads to $Tv=-v$, the latter to $Tv=v$.
+   - Clearly $T=I$ satisfies $T^2=I$, but
+     e.g. $T=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ wrt the standard
+     basis satisfies this condition as well.
+7. Exercise 6.5, page 495, Q#4
+   - For any $k\geq0$,
+     $T(x^{k}) := x \cdot (x^k)' = k x^k$, so $x^k\in{\rm ker}\,T$ iff $k=0$
+   - By the above argument, for a polynomial of degree greater than zero,
+     ${\rm deg}\, Tp = {\rm deg}\, p$, and the constant polynomials are
+     mapped to zero (to which we assign degree $-\infty)$.
+     So $1\notin {\rm Im}\, T$ while $x^{k>0}\in{\rm Im}\, T$,
+     e.g. $T(x)=x$, $T(\frac{1}{2}x^2) = x^2$
+   - ${\rm ker}\,T =$ the constant polynomials
+   - ${\rm Im}\, T =$ polynomials of degree > 0
+8. Exercise 6.5, page 495, Q#14
+   - A $3\times3$ matrix has $2\times3$ off-diagonal entries. Clearly
+     ${\rm ker}\, T =$ symmetric $3\times3$ matrices,
+     so ${\rm null}\, T = 3$. By r.n.t., ${\rm dim\ Im}\, T = 3\times3-3=6$
+   - Alternatively, $T(A)$ is antisymmetric,
+     which fixes 3 out of 9 of its entries, so again ${\rm dim\ Im}\,T=6$
+     and ${\rm dim\ ker}\, T = 9-6 =3$
+9. Exercise 6.5, page 495, Q#16
+   - ${\rm dim}\, P_2 = 3 > 2 = {\rm dim}\, \mathbb{R}^2$,
+     so $T$ cannot be onto. E.g. nothing maps to $x+x^2$.
+   - If $T(a,b)^T = T(u,v)^T$, then $T(a-u,b-v)^T=0$. \\
+     But the only solution of the homogenous system
+     $\begin{pmatrix}1&-2&|0\\3&1&|0\\1&1&|0\end{pmatrix}$
+     is the trivial one; e.g. $a=-b$ and $a=2b$ force $a=b=0$. \\
+     $T$ is thus injective.
+10. Exercise 6.6, page 513, Q#4
+    - Direct computation:
+      - Take $p = a(x+2)^0 + b(x+2)^1 + c(x+2)^2$ with representation
+        $(a,b,c)^T$ wrt $B$. \\
+        Then $Tp = a(x+2+2)^0 + b(x+2+2)^1 + c(x+2+2)^2
+              = a + bx + 4b + cx^2+8cx+16c
+              = (a+4b+16c) x^0 + (b+8c) x^1 + cx^2$
+        Which clearly has the representation $(a+4b+16c,b+8c,c)^T$ wrt $C$.
+      - Action of $T$ on the elements of $B$:
+        - $T(v_1) = (x+2+2)^0 = 1$, so $[T(v_1)]_C = (1,0,0)^T$
+        - $[T(v_2)]_C = [(x+2+2)^1]_C = (4,1,0)^T$
+        - $[T_(v_3)]_C = [(x+2+2)^2]_C = (16,8,1)^T$
+      - Hence $[T]_{C\gets B} = \begin{pmatrix}1&4&4^2\\0&1&8\\0&0&1\end{pmatrix}$.
+        Verification that
+         $[T]_{C\gets B} [p]_B = \begin{pmatrix}1&4&4^2\\0&1&8\\0&0&1\end{pmatrix} \begin{pmatrix}a\\b\\c\end{pmatrix} = \begin{pmatrix} a+4b+16c\\ b+8c\\ c\end{pmatrix} = [Tp]_C$ is trivial.
+11. Exercise 6.6, page 513, Q#6
+    - Direct calculation:
+      Let $p=ax^2+bx+c$ have the representation $(a,b,c)^T$ wrt $B$. \\
+      Then $T(p) = (p(0),p(1))^T = (c,a+b+c)^T = u(1,0)^T + v(1,1)^T$.
+      Solving for $u,v$: $T(p) = (a+b+c)(1,1)^T - (a+b)(1,0)^T$, so that
+      $[Tp]_C = (-a-b,a+b+c)^T$
+    - Action of $T$ on the elements of $B$:
+      - $T(x^0) = (1,1)^T = [(0,1)^T]_C$
+      - $T(x^{k>0}) = (1,0)^T = [(-1,1)^T]_C$
+    - Thus $[T]_{C\gets B} = \begin{pmatrix}-1&-1&0\\1&1&1\end{pmatrix}$, \\
+      and we can verify that
+      $[T]_{C\gets B} [p_B] = \begin{pmatrix}-1&-1&0 \\ 1&1&1 \end{pmatrix}\begin{pmatrix}a\\b\\c\end{pmatrix} = \begin{pmatrix}-a-b\\a+b+c\end{pmatrix} = [Tp]_C$
+12. Exercise 6.6, page 513, Q#18
+    - Take $P_1\ni p(x) = a+bx = [(a,b)^T]_B$. \\
+      Then $(T(p))(x) = a + b(x+1)$,
+      and $(S\circ T p)(x) = a + b((x+1)+1) = (a+2b) + bx
+       = [(a+2b,b,0)^T]_D$ By considering $S\circ T$
+      on the elements of $B$, we get
+      $[S\circ T]_{D\gets B} = \begin{pmatrix}1&2\\0&1 \\0&0\end{pmatrix}$
+    - By the same steps as above, we have
+      $[T]_{C\gets B} = \begin{pmatrix}1&1\\0&1 \\0&0\end{pmatrix}$. \\
+      Now $S(1) = 1 = [(1,0,0)]_D, S(x) = x+1 = [(1,1,0)^T]_D, S(x^2) = 1+2x+x^2 = [(1,2,1)^T]_D$, so that
+      $[S]_{D\gets C} = \begin{pmatrix}1&1&1 \\ 0&1&2 \\ 0&0&1 \end{pmatrix}$
+    - We can easily verify that \\
+       $[S\circ T]_{D\gets B} = \begin{pmatrix}1&2\\0&1 \\0&0\end{pmatrix} = \begin{pmatrix}1&1&1 \\ 0&1&2 \\ 0&0&1 \end{pmatrix} \begin{pmatrix}1&1\\0&1 \\0&0\end{pmatrix} = [S]_{D\gets C} \, [T]_{C\gets B}$
